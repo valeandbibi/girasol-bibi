@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feliz Cumpleaños Bibi - Girasol Animado</title>
+  <style>
+    body{margin:0;background:#fff8e1;display:flex;align-items:center;justify-content:center;height:100vh;font-family:'Comic Sans MS',cursive;overflow:hidden}
+    .container{display:flex;flex-direction:column;align-items:center}
+    h1{color:#b36f00;font-size:2.5em;text-shadow:2px 2px 4px #ffd54f;margin-top:10px;animation:flotar 3s ease-in-out infinite}
+    @keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    svg{width:320px;height:320px;animation:girar 25s linear infinite}
+    @keyframes girar{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .centro{animation:pulso 2s ease-in-out infinite}
+    @keyframes pulso{0%,100%{r:45}50%{r:55}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="centro" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#5b3a00" />
+          <stop offset="100%" stop-color="#2a1700" />
+        </radialGradient>
+        <linearGradient id="petalo" x1="0" x2="1">
+          <stop offset="0%" stop-color="#ffb300" />
+          <stop offset="100%" stop-color="#ffd54f" />
+        </linearGradient>
+      </defs>
+      <g transform="translate(150,150)">
+        <!-- pétalos -->
+        <g id="petalos"></g>
+        <!-- centro -->
+        <circle class="centro" r="50" fill="url(#centro)" />
+      </g>
+    </svg>
+    <h1>🌻 Feliz Cumpleaños Bibi 🌻</h1>
+  </div>
+
+  <script>
+    const petalos = document.getElementById('petalos');
+    for(let i=0;i<24;i++){
+      const rot = (360/24)*i;
+      const petalo = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+      petalo.setAttribute('cx','0');
+      petalo.setAttribute('cy','-80');
+      petalo.setAttribute('rx','20');
+      petalo.setAttribute('ry','60');
+      petalo.setAttribute('fill','url(#petalo)');
+      petalo.setAttribute('transform',`rotate(${rot})`);
+      petalos.appendChild(petalo);
+    }
+  </script>
+</body>
+</html>
